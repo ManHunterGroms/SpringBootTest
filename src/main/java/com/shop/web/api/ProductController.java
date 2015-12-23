@@ -20,14 +20,14 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-    @RequestMapping(value = "/",
+    @RequestMapping(value = "/api",
     method = RequestMethod.GET,
     produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> home() {
         return new ResponseEntity<String>("Hello world", HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/product/{id}",
+    @RequestMapping(value = "/api/product/{id}",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Product> getProduct(@PathVariable("id") int id) {
