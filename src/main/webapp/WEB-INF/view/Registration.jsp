@@ -19,7 +19,6 @@
 <div class="container">
     <jsp:include page="fragments/carousel.jsp"/>
     <jsp:include page="fragments/navbar.jsp"/>
-
     <div class="row">
         <div class="col-md-12">
             <form:form  class="form-horizontal" modelAttribute="customer" action="/registration" method="post">
@@ -33,7 +32,9 @@
                                 <label for="firstName" class="col-md-2 control-label">Имя</label>
 
                                 <div class="col-md-10">
-                                    <form:input type="text" path="firstName" class="form-control" id="firstName" placeholder="Имя" />
+                                    <form:input type="text" path="firstName" class="form-control"
+                                                sserrorclass="form-control-error" id="firstName" placeholder="Имя" />
+                                    <form:errors path="firstName" cssClass="error" />
                                 </div>
                                 <span class="material-input"></span>
                             </div>
@@ -44,6 +45,7 @@
                                 <div class="col-md-10">
                                     <form:input type="text" path="lastName" class="form-control" id="lastName"
                                            placeholder="Фамилия" />
+                                    <form:errors path="lastName" cssClass="error" />
                                 </div>
                                 <span class="material-input"></span>
                             </div>
@@ -53,6 +55,7 @@
 
                                 <div class="col-md-10">
                                     <form:input type="email" path="user.email" class="form-control" id="user.email" placeholder="Email" />
+                                    <form:errors path="user.email" cssClass="error" />
                                 </div>
                                 <span class="material-input"></span>
                             </div>
@@ -63,6 +66,7 @@
                                 <div class="col-md-10">
                                     <form:input type="password" path="user.password" class="form-control" id="user.password"
                                            placeholder="Password" />
+                                    <form:errors path="user.password" cssClass="error" />
                                 </div>
                                 <span class="material-input"></span>
                             </div>
@@ -83,13 +87,14 @@
                                 <div class="col-md-10">
                                     <form:input type="tel" path="phoneNumber" class="form-control" id="phoneNumber"
                                            placeholder="Телефон" />
+                                    <form:errors path="phoneNumber" cssClass="error" />
                                 </div>
                                 <span class="material-input"></span>
                             </div>
 
                             <div class="form-group">
                                 <div class="col-md-10 col-md-offset-2">
-                                    <button type="button" class="btn btn-default">Отмена</button>
+                                    <a href="/" class="btn btn-default">Отмена</a>
                                     <button type="submit" class="btn btn-primary">Отправить</button>
                                 </div>
                             </div>
