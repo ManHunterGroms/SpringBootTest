@@ -12,4 +12,5 @@ public interface CustomerService {
     Customer findCustomerById(long id);
     Customer findCustomerByEmail(String email);
     Collection<Customer> getAllCustomers();
+    Customer findCustomerByUserId(long id);
 }

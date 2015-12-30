@@ -1,28 +1,24 @@
 package com.shop.Model;
 
-import org.hibernate.annotations.*;
-import org.hibernate.annotations.CascadeType;
-
 import javax.persistence.*;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.List;
+import java.io.Serializable;
 
 /**
  * Created by bymot on 23.12.2015.
  */
 @Entity
 @Table(name = "customer")
-public class Customer {
+public class Customer implements Serializable {
     private Long id;
     private User user;
     private String firstName;
     private String lastName;
     private String phoneNumber;
-
-    private List<Address> addresses;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -35,9 +31,8 @@ public class Customer {
         this.id = id;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "user_id", nullable = false, unique = false)
-    @Cascade(CascadeType.SAVE_UPDATE)
     public User getUser() {
         return user;
     }
@@ -66,16 +61,6 @@ public class Customer {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    @Cascade(CascadeType.ALL)
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "address")
-    public List<Address> getAddresses() {
-        return addresses;
-    }
-
-    public void setAddresses(List<Address> addresses) {
-        this.addresses = addresses;
     }
 
     @Column(name = "phone", nullable = true)

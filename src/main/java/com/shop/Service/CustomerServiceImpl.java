@@ -3,8 +3,10 @@ package com.shop.Service;
 import com.shop.DAO.CustomerDao;
 import com.shop.Model.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityManager;
 import java.util.Collection;
 
 /**
@@ -25,7 +27,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Customer findCustomerById(long id) {
-        return null;
+        return customerDao.findOne(id);
     }
 
     @Override
@@ -36,5 +38,10 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public Collection<Customer> getAllCustomers() {
         return null;
+    }
+
+    @Override
+    public Customer findCustomerByUserId(long id) {
+        return customerDao.getCustomerByUserId(id);
     }
 }

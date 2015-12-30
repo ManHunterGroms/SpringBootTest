@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * Created by bymot on 22.12.2015.
  */
 public interface UserDao extends JpaRepository<User, Long> {
-    User findOneByEmail(String email);
+    User findUserByEmail(String email);
 }
