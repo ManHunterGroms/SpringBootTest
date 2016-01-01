@@ -23,13 +23,13 @@ DROP TABLE IF EXISTS `address`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `address` (
-  `id` int(11) NOT NULL,
-  `customer_id` int(11) NOT NULL,
-  `city` varchar(20) NOT NULL,
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `address` varchar(50) NOT NULL,
+  `city` varchar(20) NOT NULL,
+  `customer_id` bigint(20) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `user_id_idx` (`customer_id`),
-  CONSTRAINT `address_customer_id` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  UNIQUE KEY `UK_h8jov0p3cffixl6yhdy4hb2gi` (`address`),
+  UNIQUE KEY `UK_9fsou6x3wdwnveij6uf0a6uk0` (`city`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -51,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-12-31 11:21:30
+-- Dump completed on 2016-01-01 23:54:57

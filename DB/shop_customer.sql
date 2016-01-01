@@ -30,6 +30,7 @@ CREATE TABLE `customer` (
   `phone` varchar(15) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `customer_user_idx` (`user_id`),
+  CONSTRAINT `FK_j7ja2xvrxudhvssosd4nu1o92` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
   CONSTRAINT `customer_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -53,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-12-31 11:21:30
+-- Dump completed on 2016-01-01 23:54:57
