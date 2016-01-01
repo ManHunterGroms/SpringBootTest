@@ -28,7 +28,7 @@ public class ProfileController {
 
     @RequestMapping(value = {"", "/"}, method = RequestMethod.GET)
     public String profile(ModelMap model) {
-        model.addAttribute("customer", customerService.findCustomerByUserId())
+        model.addAttribute("customer", customerService.getCurrentCustomer());
         return "profile";
     }
 }

@@ -9,8 +9,8 @@ import java.util.Collection;
  */
 public interface ProductService {
     Collection<Product> findAll();
-    Product findOne(int id);
+    Product findOne(Long id);
     Product create(Product product);
     Product update(Product product);
-    void delete(int id);
+    void delete(Long id);
 }

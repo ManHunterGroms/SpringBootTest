@@ -22,16 +22,16 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product findOne(int id) {
+    public Product findOne(Long id) {
         Product product = productDAO.findOne(id);
         return product;
     }
 
     @Override
     public Product create(Product product) {
-        if(product.getId() != 0) {
-            return null;
-        }
+//        if(product.getId() != 0) {
+//            return null;
+//        }
 
         Product saveProduct = productDAO.save(product);
         return saveProduct;
@@ -49,7 +49,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(Long id) {
         productDAO.delete(id);
     }
 }

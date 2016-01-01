@@ -3,7 +3,9 @@ package com.shop.Model;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by bymot on 21.12.2015.
@@ -11,23 +13,25 @@ import java.util.List;
 @Entity(name = "product")
 public class Product {
 
-    private int id;
+    private Long id;
     private Category category;
     private String name;
     private String description;
     private BigDecimal price;
     private Timestamp date;
 
+    private Set<Image> images = new HashSet<Image>();
+
     public Product() {
     }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -75,5 +79,14 @@ public class Product {
 
     public void setDate(Timestamp date) {
         this.date = date;
+    }
+
+    @OneToMany(mappedBy = "product", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    public Set<Image> getImages() {
+        return images;
+    }
+
+    public void setImages(Set<Image> images) {
+        this.images = images;
     }
 }

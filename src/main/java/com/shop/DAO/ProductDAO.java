@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
  * Created by bymot on 21.12.2015.
  */
 @Repository
-public interface ProductDAO extends JpaRepository<Product, Integer> {
+public interface ProductDAO extends JpaRepository<Product, Long> {
 
 }

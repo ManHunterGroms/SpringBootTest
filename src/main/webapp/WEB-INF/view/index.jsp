@@ -19,62 +19,27 @@
     <jsp:include page="fragments/carousel.jsp"/>
     <jsp:include page="fragments/navbar.jsp"/>
     <div class="row">
-        <div class="col-sm-6 col-md-4">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <img src="http://i.playground.ru/i/37/46/41/00/blog/content/yzfdllr0.jpg" alt="..." style="width: 320px;"/>
+        <c:forEach items="${products}" var="product">
+            <div class="col-sm-6 col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <c:forEach items="${product.images}" var="image" begin="0" end="1">
+                            <img src="/image/product/${image.imageUrl}" alt="..." style="width: 320px;"/>
+                        </c:forEach>
+                        <div class="caption">
+                            <h3>${product.name}</h3>
 
-                    <div class="caption">
-                        <h3>Ярлык эскиза</h3>
+                            <p>${product.description}</p>
 
-                        <p>...</p>
-
-                        <p>
-                            <a href="#" class="btn btn-primary" role="button">Кнопка</a>
-                            <a href="#" class="btn btn-default" role="button">Кнопка</a>
-                        </p>
+                            <p>
+                                <a href="#" class="btn btn-primary" role="button">${product.price}</a>
+                                <a href="#" class="btn btn-default" role="button">${product.date}</a>
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div class="col-sm-6 col-md-4">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/6/6c/AMD_Radeon_graphics_logo_2014.svg/1213px-AMD_Radeon_graphics_logo_2014.svg.png" alt="..." style="width: 320px;"/>
-
-                    <div class="caption">
-                        <h3>Ярлык эскиза</h3>
-
-                        <p>...</p>
-
-                        <p>
-                            <a href="#" class="btn btn-primary" role="button">Кнопка</a>
-                            <a href="#" class="btn btn-default" role="button">Кнопка</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-sm-6 col-md-4">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/6/6c/AMD_Radeon_graphics_logo_2014.svg/1213px-AMD_Radeon_graphics_logo_2014.svg.png" alt="..." style="width: 320px;"/>
-
-                    <div class="caption">
-                        <h3>Ярлык эскиза</h3>
-
-                        <p>...</p>
-
-                        <p>
-                            <a href="#" class="btn btn-primary" role="button">Кнопка</a>
-                            <a href="#" class="btn btn-default" role="button">Кнопка</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
+        </c:forEach>
     </div>
     <jsp:include page="fragments/footer.jsp"/>
 </div>
