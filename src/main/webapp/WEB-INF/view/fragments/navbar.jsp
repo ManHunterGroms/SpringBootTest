@@ -22,6 +22,7 @@
             <ul class="nav navbar-nav">
                 <li class="active"><a href="/">Главная</a></li>
                 <li><a href="/category">Категории</a></li>
+                <li><a href="/product">Товары</a></li>
                 <li><a href="/delivery">Доставка</a></li>
                 <li><a href="/pay">Оплата</a></li>
                 <li><a href="/about">О магазине</a></li>

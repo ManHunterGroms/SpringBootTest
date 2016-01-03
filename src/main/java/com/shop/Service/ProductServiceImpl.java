@@ -3,8 +3,9 @@ package com.shop.Service;
 import com.shop.DAO.ProductDAO;
 import com.shop.Model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
 import java.util.Collection;
 
 /**
@@ -22,6 +23,11 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public Page<Product> findAll(Pageable pageable) {
+        return productDAO.findAll(pageable);
+    }
+
+    @Override
     public Product findOne(Long id) {
         Product product = productDAO.findOne(id);
         return product;
@@ -35,6 +41,11 @@ public class ProductServiceImpl implements ProductService {
 
         Product saveProduct = productDAO.save(product);
         return saveProduct;
+    }
+
+    @Override
+    public long count() {
+        return productDAO.findAll().size();
     }
 
     @Override

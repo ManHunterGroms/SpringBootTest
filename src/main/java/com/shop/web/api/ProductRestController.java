@@ -17,7 +17,7 @@ import java.util.Collection;
  * Created by bymot on 21.12.2015.
  */
 @RestController
-public class ProductController {
+public class ProductRestController {
 
     @Autowired
     private ProductService productService;

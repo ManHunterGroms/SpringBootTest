@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - shop@localhost" uuid="615cdd39-a83e-4576-83ef-b32ea37c7a03">
+    <database-info product="MySQL" version="5.5.23" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
+    <schema name="" catalog="shop"/>
+    <table name="address" schema="" catalog="shop" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="customer_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="city" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="address" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="address_customer_id" columns="customer_id" ref-table="customer" ref-schema="" ref-catalog="shop" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="user_id_idx" unique="false" columns="customer_id"/>
+    </table>
+    <table name="category" schema="" catalog="shop" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="category" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="product_category_id" table="product" schema="" catalog="shop" columns="category_id"/>
+    </table>
+    <table name="customer" schema="" catalog="shop" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="user_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="first_name" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="last_name" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="phone" sqlType="VARCHAR" precision="15" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="customer_user" columns="user_id" ref-table="user" ref-schema="" ref-catalog="shop" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="address_customer_id" table="address" schema="" catalog="shop" columns="customer_id"/>
+      <exported-key name="order_customer_id" table="order" schema="" catalog="shop" columns="customer_id"/>
+      <index name="customer_user_idx" unique="false" columns="user_id"/>
+    </table>
+    <table name="image" schema="" catalog="shop" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="product_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="image_product_id" columns="product_id" ref-table="product" ref-schema="" ref-catalog="shop" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="product_id_idx" unique="false" columns="product_id"/>
+    </table>
+    <table name="order" schema="" catalog="shop" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="customer_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="product_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="amount" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="status_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="comment" sqlType="TEXT" precision="65535" scale="0" nullable="false" jdbcType="-1"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="order_status_id" columns="status_id" ref-table="status" ref-schema="" ref-catalog="shop" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="order_customer_id" columns="customer_id" ref-table="customer" ref-schema="" ref-catalog="shop" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="order_product_id" columns="product_id" ref-table="product" ref-schema="" ref-catalog="shop" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="customer_id_idx" unique="false" columns="customer_id"/>
+      <index name="product_id_idx" unique="false" columns="product_id"/>
+      <index name="status_id_idx" unique="false" columns="status_id"/>
+    </table>
+    <table name="product" schema="" catalog="shop" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="category_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="name" sqlType="VARCHAR" precision="30" scale="0" nullable="true" jdbcType="12"/>
+      <column name="description" sqlType="TEXT" precision="65535" scale="0" nullable="false" jdbcType="-1"/>
+      <column name="date" sqlType="DATE" precision="10" scale="0" nullable="false" jdbcType="91"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="product_category_id" columns="category_id" ref-table="category" ref-schema="" ref-catalog="shop" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="image_product_id" table="image" schema="" catalog="shop" columns="product_id"/>
+      <exported-key name="order_product_id" table="order" schema="" catalog="shop" columns="product_id"/>
+      <index name="product_category_id_idx" unique="false" columns="category_id"/>
+    </table>
+    <table name="status" schema="" catalog="shop" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="status" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="order_status_id" table="order" schema="" catalog="shop" columns="status_id"/>
+    </table>
+    <table name="user" schema="" catalog="shop" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="email" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
+      <column name="password" sqlType="VARCHAR" precision="60" scale="0" nullable="false" jdbcType="12"/>
+      <column name="role" sqlType="VARCHAR" precision="15" scale="0" nullable="true" jdbcType="12"/>
+      <column name="registration_date" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA=" version="true"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="customer_user" table="customer" schema="" catalog="shop" columns="user_id"/>
+    </table>
+  </data-source>
+</component>

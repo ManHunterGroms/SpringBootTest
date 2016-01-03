@@ -8,3 +8,4 @@
 <script src="<c:url value="/resources/js/material.min.js" />"></script>
 <script src="<c:url value="/resources/js/ripples.min.js" />"></script>
 <script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
+<script src="<c:url value="/resources/js/jquery.twbsPagination.min.js" />"></script>

@@ -4,6 +4,8 @@ import com.shop.Model.Customer;
 import com.shop.Service.CustomerService;
 import com.shop.Service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -27,7 +29,7 @@ public class HomeController {
     
     @RequestMapping(value = {"", "/"}, method = RequestMethod.GET)
     public String home(ModelMap model) {
-        model.addAttribute("products", productService.findAll());
+        model.addAttribute("products", productService.findAll(new PageRequest(0, 10)).getContent());
 
         return "index";
     }

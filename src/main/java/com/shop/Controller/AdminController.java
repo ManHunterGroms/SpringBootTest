@@ -56,10 +56,10 @@ public class AdminController {
                               HttpServletRequest request) {
         List<String> fileNames = new ArrayList<>();
 
-        if(multipartFiles != null) {
+        if(!multipartFiles[0].isEmpty()) {
             for(int i = 0; i < multipartFiles.length; i++) {
                 MultipartFile file = multipartFiles[i];
-                fileNames.add(file.getName());
+                fileNames.add(file.getOriginalFilename());
                 try {
                     byte[] bytes = file.getBytes();
                     String rootPath = request.getServletContext().getRealPath("/");
