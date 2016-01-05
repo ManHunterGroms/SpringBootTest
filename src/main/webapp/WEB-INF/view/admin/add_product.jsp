@@ -81,7 +81,7 @@
                                 <label for="price" class="col-md-2 control-label">Фото</label>
 
                                 <div class="col-md-10">
-                                    <input type="file" name="image_files[]" multiple="multiple" >
+                                    <input type="file" name="image_files" multiple="multiple" >
                                     <input type="text" readonly="" class="form-control" placeholder="Открыть...">
                                 </div>
                                 <span class="material-input"></span>

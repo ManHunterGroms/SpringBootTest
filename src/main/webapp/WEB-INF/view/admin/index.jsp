@@ -23,6 +23,7 @@
     <div class="col-md-12">
         <div class="well bs-component">
           <a href="/admin/add_product" class="btn btn-primary">Добавить товар</a>
+          <a href="/admin/categories" class="btn btn-primary">Управление категориями</a>
         </div>
     </div>
   </div>

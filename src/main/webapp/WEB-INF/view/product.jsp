@@ -24,52 +24,39 @@
         <div class="col-md-4">
             <div class="panel panel-success">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Сортировка</h3>
+                    <h3 class="panel-title">Другие товары</h3>
                 </div>
                 <div class="panel-body">
 
-                    <form action="/product">
-                        <select name="categorySelected" class="form-control">
-                            <option value="0" ${categorySelected eq null ? "selected" : ""}>Выберите категорию</option>
-                            <c:forEach items="${categories}" var="category">
-                                <option ${categorySelected eq category.id ? "selected" : ""}
-                                        value="${category.id}">${category.categoryName}</option>
-                            </c:forEach>
-                        </select>
-                        <span class="material-input"></span>
-
-                        <select name="sort" class="form-control">
-                            <option value="1" ${sort eq 1 ? "selected" : ""}>Дата добавления</option>
-                            <option value="2" ${sort eq 2 ? "selected" : ""}>Дешевые</option>
-                            <option value="3" ${sort eq 3 ? "selected" : ""}>Дорогие</option>
-                        </select>
-                        <span class="material-input"></span>
-
-                        <input type="submit" class="btn btn-raised btn-success btn-lg" value="Подобрать"/>
-                    </form>
                 </div>
             </div>
         </div>
 
         <div class="col-md-8">
-            <c:forEach items="${products}" var="product">
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <div class="col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12 text-right">
+                            <a href="/add_kart" class="btn btn-raised btn-warning">Добавить в корзину</a>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12 text-center">>
                             <c:if test="${fn:length(product.images) < 1}">
                                 <img src="/image/product/empty_image.jpg" alt="..."
                                      style="max-width: 150px; max-height: 150px"/>
                             </c:if>
-                            <c:forEach items="${product.images}" var="image" begin="0" end="1">
+                            <c:forEach items="${product.images}" var="image">
                                 <img src="/image/product/${image.imageUrl}" alt="..."
                                      style="max-width: 150px; max-height: 150px"/>
                             </c:forEach>
                         </div>
+                    </div>
 
-                        <div class="col-md-9">
-                            <a href="/product/${product.id}">
-                                <h3>${product.name}</h3>
-                            </a>
+                    <div class="row">
+                        <div class="col-md-10">
+                            <h3>${product.name}</h3>
 
                             <p>${product.description}</p>
 
@@ -90,12 +77,11 @@
                         </div>
                     </div>
                 </div>
-            </c:forEach>
+            </div>
         </div>
     </div>
 
     <div class="row">
-
         <div class="text-center">
             <div id="selector"></div>
             <script>
@@ -110,7 +96,6 @@
                 });
             </script>
         </div>
-
     </div>
     <jsp:include page="fragments/footer.jsp"/>
 </div>

@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.ServletContextListener;
 import javax.servlet.http.HttpServletRequest;
+import javax.websocket.server.PathParam;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -52,7 +53,7 @@ public class AdminController {
 
     @RequestMapping(value = "/add_product", method = RequestMethod.POST)
     public String saveProduct(@ModelAttribute Product product,
-                              @RequestParam("image_files[]") MultipartFile[] multipartFiles,
+                              @RequestParam("image_files") MultipartFile[] multipartFiles,
                               HttpServletRequest request) {
         List<String> fileNames = new ArrayList<>();
 
@@ -93,5 +94,19 @@ public class AdminController {
         }
 
         return "redirect:/admin";
+    }
+
+    @RequestMapping(value = "/categories", method = RequestMethod.GET)
+    public String getCategories(ModelMap model) {
+        model.addAttribute("categories", categoryService.getAllCategories());
+
+        return "/admin/categories";
+    }
+
+    @RequestMapping(value = "/category", method = RequestMethod.GET)
+    public String getCategories(@PathParam("delete") Long category_id) {
+        categoryService.deleteById(category_id);
+
+        return "redirect:/admin/categories";
     }
 }

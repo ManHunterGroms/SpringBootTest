@@ -7,9 +7,12 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.security.crypto.keygen.StringKeyGenerator;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.websocket.server.PathParam;
 
 /**
  * Created by bymot on 02.01.2016.
@@ -26,7 +29,7 @@ public class ProductController {
 
     @RequestMapping(value = { "", "/" }, method = RequestMethod.GET)
     public String getProducts(@RequestParam(value = "page", defaultValue = "1", required = false) int page,
-                              @RequestParam(value = "size", defaultValue = "5", required = false) int size,
+                              @RequestParam(value = "size", defaultValue = "10", required = false) int size,
                               @RequestParam(value = "categorySelected", defaultValue = "0", required = false) int category,
                               @RequestParam(value = "sort", defaultValue = "0", required = false) int sort,
                               ModelMap model) {
@@ -40,5 +43,13 @@ public class ProductController {
         model.addAttribute("totalPage", productService.count());
         model.addAttribute("categories", categoryService.getAllCategories());
         return "products";
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public String getProduct(@PathVariable("id") Long product_id,
+                             ModelMap model) {
+        model.addAttribute("product", productService.findOne(product_id));
+
+        return "product";
     }
 }

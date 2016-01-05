@@ -30,4 +30,9 @@ public class CategoryServiceImpl implements CategoryService {
     public Collection<Category> getAllCategories() {
         return categoryDao.findAll();
     }
+
+    @Override
+    public void deleteById(Long id) {
+        categoryDao.deleteById(id);
+    }
 }

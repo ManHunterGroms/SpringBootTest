@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <html>
 <head>
@@ -23,11 +24,20 @@
             <div class="col-sm-6 col-md-4">
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <c:forEach items="${product.images}" var="image" begin="0" end="1">
-                            <img src="/image/product/${image.imageUrl}" alt="..." style="width: 320px;"/>
-                        </c:forEach>
+                        <div class=" text-center">
+                            <c:if test="${fn:length(product.images) < 1}">
+                                <img src="/image/product/empty_image.jpg" alt="..."
+                                     style="max-width: 150px; max-height: 150px"/>
+                            </c:if>
+                            <c:forEach items="${product.images}" var="image" begin="0" end="1">
+                                <img src="/image/product/${image.imageUrl}" alt="..."
+                                     style="max-width: 150px; max-height: 150px"/>
+                            </c:forEach>
+                        </div>
                         <div class="caption">
-                            <h3>${product.name}</h3>
+                            <a href="/product/${product.id}">
+                                <h3>${product.name}</h3>
+                            </a>
 
                             <p>${product.description}</p>
 
